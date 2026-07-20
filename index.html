@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uma Pergunta ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#ff7eb3,#ff758c,#ffd3e1);
+    overflow:hidden;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+#container{
+    text-align:center;
+}
+
+h1{
+    color:white;
+    font-size:34px;
+    margin-bottom:40px;
+    text-shadow:2px 2px 5px rgba(0,0,0,.3);
+}
+
+button{
+    border:none;
+    padding:18px 35px;
+    font-size:22px;
+    border-radius:40px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+#sim{
+    background:#4CAF50;
+    color:white;
+    margin-right:20px;
+}
+
+#nao{
+    background:#f44336;
+    color:white;
+    position:absolute;
+}
+
+#final{
+    display:none;
+    color:white;
+    font-size:30px;
+    animation:zoom .6s;
+}
+
+#final h2{
+    margin-bottom:20px;
+}
+
+@keyframes zoom{
+from{transform:scale(0);}
+to{transform:scale(1);}
+}
+
+.heart{
+    position:absolute;
+    font-size:30px;
+    animation:subir 4s linear forwards;
+}
+
+@keyframes subir{
+0%{
+transform:translateY(0);
+opacity:1;
+}
+100%{
+transform:translateY(-700px);
+opacity:0;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+<div id="inicio">
+<h1>💖 Quer namorar comigo? 💖</h1>
+
+<button id="sim">Sim ❤️</button>
+<button id="nao">Não 😅</button>
+</div>
+
+<div id="final">
+<h2>💍 AAAAAA!! Você aceitou!! 💖</h2>
+<p>Prometo fazer você sorrir todos os dias. ❤️</p>
+</div>
+
+</div>
+
+<script>
+
+const nao=document.getElementById("nao");
+
+function fugir(){
+
+const largura=window.innerWidth-120;
+const altura=window.innerHeight-80;
+
+nao.style.left=Math.random()*largura+"px";
+nao.style.top=Math.random()*altura+"px";
+
+}
+
+nao.addEventListener("mouseenter",fugir);
+nao.addEventListener("touchstart",function(e){
+e.preventDefault();
+fugir();
+});
+
+document.getElementById("sim").onclick=function(){
+
+document.getElementById("inicio").style.display="none";
+document.getElementById("final").style.display="block";
+
+setInterval(()=>{
+
+const h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+
+h.style.left=Math.random()*window.innerWidth+"px";
+h.style.top=window.innerHeight+"px";
+
+document.body.appendChild(h);
+
+setTimeout(()=>{
+h.remove();
+},4000);
+
+},150);
+
+}
+
+fugir();
+
+</script>
+
+</body>
+</html>
